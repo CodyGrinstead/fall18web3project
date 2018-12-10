@@ -26,15 +26,17 @@
         $filelocation = "/photos/$filename";
         $sql = "INSERT INTO photos (Name, location, user) VALUES ('$filename','$filelocation','$user')";
         if (mysqli_query($conn, $sql)) {
+            echo "photo uploaded";
             mysqli_close($conn);
             if (move_uploaded_file($_FILES['filename']['tmp_name'],$filename)){
-                echo "it worked";
+                //echo "it worked";
             }
             else{
                 echo "nope";
             } 
         } else {
             mysqli_close($conn);
+            echo "Photo was not able to be uploaded.";
         }
     }
 
